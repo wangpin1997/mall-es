@@ -20,7 +20,6 @@ spring:
       cluster-nodes: 127.0.0.1:9300
       repositories:
         enabled: true
-      cluster-name: wp_es_cluster
 
   main:
     allow-bean-definition-overriding: true

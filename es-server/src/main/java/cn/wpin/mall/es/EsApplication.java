@@ -12,7 +12,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan(basePackages = "cn.wpin.mall")
+@MapperScan(basePackages = "cn.wpin.mall.es")
 public class EsApplication {
 
     public static void main(String[] args) {
