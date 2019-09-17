@@ -7,19 +7,11 @@ spring:
       config:
         server-addr: localhost:8848
         name: ${spring.application.name}
-        shared-dataids: nacos.yml,db.product.yml,mybatis.yml   #如是eureka注册，将nacos换成对应的eureka即可
+        shared-dataids: nacos.yml,db.product.yml,mybatis.yml,es.yml   #如是eureka注册，将nacos换成对应的eureka即可
         file-extension: yml
         namespace: 75361628-fff1-43cf-bd04-4b887b16de02
-        refreshable-dataids: nacos.yml,db.product.yml,mybatis.yml  #如是eureka注册，将nacos换成对应的eureka即可
+        refreshable-dataids: nacos.yml,db.product.yml,mybatis.yml,es.yml  #如是eureka注册，将nacos换成对应的eureka即可
   profiles:
     active: test
 
 
-  data:
-    elasticsearch:
-      cluster-nodes: 127.0.0.1:9300
-      repositories:
-        enabled: true
-
-  main:
-    allow-bean-definition-overriding: true
