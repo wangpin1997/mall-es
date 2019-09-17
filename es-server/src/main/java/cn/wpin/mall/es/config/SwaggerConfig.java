@@ -36,7 +36,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("商品模块API接口列表")
+                .title("ElasticSearch模块API接口列表")
                 .description("")
                 .version("1.0")
                 .build();
