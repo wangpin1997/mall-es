@@ -135,7 +135,7 @@ public class EsProductService {
             FunctionScoreQueryBuilder.FilterFunctionBuilder[] builders = new FunctionScoreQueryBuilder.FilterFunctionBuilder[filterFunctionBuilders.size()];
             filterFunctionBuilders.toArray(builders);
             FunctionScoreQueryBuilder functionScoreQueryBuilder = QueryBuilders.functionScoreQuery(builders)
-                    .scoreMode(FunctionScoreQuery.ScoreMode.SUM)
+//                    .scoreMode(FunctionScoreQuery.ScoreMode.SUM) todo:es6版本和5之间的差别，待解决，如提升版本到6，与nacos不兼容，不提升，这个字段又没得
                     .setMinScore(2);
             nativeSearchQueryBuilder.withQuery(functionScoreQueryBuilder);
         }
@@ -186,7 +186,7 @@ public class EsProductService {
             FunctionScoreQueryBuilder.FilterFunctionBuilder[] builders = new FunctionScoreQueryBuilder.FilterFunctionBuilder[filterFunctionBuilders.size()];
             filterFunctionBuilders.toArray(builders);
             FunctionScoreQueryBuilder functionScoreQueryBuilder = QueryBuilders.functionScoreQuery(builders)
-                    .scoreMode(FunctionScoreQuery.ScoreMode.SUM)
+//                    .scoreMode(FunctionScoreQuery.ScoreMode.SUM)
                     .setMinScore(2);
             NativeSearchQueryBuilder builder = new NativeSearchQueryBuilder();
             builder.withQuery(functionScoreQueryBuilder);
