@@ -14,42 +14,38 @@ import java.util.List;
 
 /**
  * es对外提供接口
+ * @author wangpin
  */
-@FeignClient("es")
+@FeignClient(value = "es",fallback =EsProductHystrix.class )
 public interface EsProductClient {
 
     /**
      * 导入所有数据库中商品到ES
-     *
      */
     @RequestMapping(value = "esProduct/importAll", method = RequestMethod.POST)
     CommonResult<Integer> importAllList();
 
     /**
      * 根据id删除商品
-     *
      */
     @RequestMapping(value = "esProduct/delete/{id}", method = RequestMethod.GET)
-     CommonResult<Object> delete(@PathVariable Long id);
+    CommonResult<Object> delete(@PathVariable Long id);
 
 
     /**
      * 根据id批量删除商品
-     *
      */
     @RequestMapping(value = "esProduct/delete/batch", method = RequestMethod.POST)
     CommonResult<Object> delete(@RequestParam("ids") List<Long> ids);
 
     /**
      * 根据id创建商品
-     *
      */
     @RequestMapping(value = "esProduct/create/{id}", method = RequestMethod.POST)
     CommonResult<EsProduct> create(@PathVariable Long id);
 
     /**
      * 简单搜索
-     *
      */
     @RequestMapping(value = "esProduct/search/simple", method = RequestMethod.GET)
     CommonResult<CommonPage<EsProduct>> search(@RequestParam String keyword,
@@ -71,7 +67,6 @@ public interface EsProductClient {
 
     /**
      * 根据商品id推荐商品
-     *
      */
     @RequestMapping(value = "esProduct/recommend/{id}", method = RequestMethod.GET)
     CommonResult<CommonPage<EsProduct>> recommend(@PathVariable Long id,
@@ -80,7 +75,6 @@ public interface EsProductClient {
 
     /**
      * 获取搜索的相关品牌、分类及筛选属性
-     *
      */
     @RequestMapping(value = "esProduct/search/relate", method = RequestMethod.GET)
     CommonResult<EsProductRelatedInfo> searchRelatedInfo(@RequestParam String keyword);
