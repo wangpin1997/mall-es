@@ -8,10 +8,8 @@
         <groupId>cn.wpin.mall</groupId>
         <artifactId>mall-base-dependency</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../mall-base-dependency/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>cn.wpin.mall</groupId>
     <artifactId>mall-es</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
