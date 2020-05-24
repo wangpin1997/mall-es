@@ -1,4 +1,18 @@
+spring:
+  application:
+    name: es
+  boot:
+    admin:
+      client:
+        url: http://localhost:8900
 server:
   port: 8887
 
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS

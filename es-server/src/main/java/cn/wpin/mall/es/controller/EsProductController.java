@@ -23,7 +23,7 @@ import java.util.List;
 @Api(tags = "搜索商品管理")
 @RequestMapping("/esProduct")
 public class EsProductController {
-    
+
     @Autowired
     private EsProductService esProductService;
 
