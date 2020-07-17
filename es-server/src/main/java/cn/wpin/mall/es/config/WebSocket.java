@@ -36,7 +36,7 @@ public class WebSocket {
 
 
     @OnOpen
-    public void OnOpen(Session session, @PathParam(value = "name") String name) {
+    public void onOpen(Session session, @PathParam(value = "name") String name) {
         this.session = session;
         this.name = name;
         // name是用来表示唯一客户端，如果需要指定发送，需要指定发送通过name来区分
@@ -46,20 +46,21 @@ public class WebSocket {
 
 
     @OnClose
-    public void OnClose() {
+    public void onClose() {
         webSocketSet.remove(this.name);
         log.info("[WebSocket] 退出成功，当前连接人数为：={}", webSocketSet.size());
     }
 
     @OnMessage
-    public void OnMessage(String message) {
+    public void onMessage(String message) {
         log.info("[WebSocket] 收到消息：{}", message);
+        String code = "TOUSER";
         //判断是否需要指定发送，具体规则自定义
-        if (message.indexOf("TOUSER") == 0) {
-            String name = message.substring(message.indexOf("TOUSER") + 6, message.indexOf(";"));
-            AppointSending(name, message.substring(message.indexOf(";") + 1, message.length()));
+        if (message.indexOf(code) == 0) {
+            String name = message.substring(message.indexOf(code) + 6, message.indexOf(";"));
+            appointSending(name, message.substring(message.indexOf(";") + 1));
         } else {
-            GroupSending(message);
+            groupSending(message);
         }
 
     }
@@ -67,9 +68,9 @@ public class WebSocket {
     /**
      * 群发
      *
-     * @param message
+     * @param message 信息
      */
-    public void GroupSending(String message) {
+    private void groupSending(String message) {
         for (String name : webSocketSet.keySet()) {
             try {
                 webSocketSet.get(name).session.getBasicRemote().sendText(message);
@@ -82,10 +83,10 @@ public class WebSocket {
     /**
      * 指定发送
      *
-     * @param name
-     * @param message
+     * @param name    名字
+     * @param message 信息
      */
-    public void AppointSending(String name, String message) {
+    private void appointSending(String name, String message) {
         try {
             webSocketSet.get(name).session.getBasicRemote().sendText(message);
         } catch (Exception e) {
